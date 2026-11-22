@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Guarded;
 use Illuminate\Database\Eloquent\Attributes\Table;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 #[Table('order_items')]
@@ -12,6 +13,8 @@ use Illuminate\Database\Eloquent\Model;
 #[Guarded(['id'])]
 class OrderItem extends Model
 {
+    use HasFactory;
+
     protected function casts()
     {
         return ['price_at_purchase' => 'decimal:2'];

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Guarded;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 #[Table(key: 'game_id')]
 #[Fillable([
@@ -16,6 +17,8 @@ use Illuminate\Database\Eloquent\Attributes\Guarded;
 #[Guarded(['game_id'])]
 class Game extends Model
 {
+    use HasFactory;
+
     protected function casts()
     {
         return [
