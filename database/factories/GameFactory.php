@@ -20,22 +20,20 @@ class GameFactory extends Factory
     public function definition(): array
     {
         return [
-            'game_title' => fake()->sentence(),
+            'game_title' => ucwords(fake()->words(rand(2, 4), true)),
+            'slug' => fn (array $attrs) => \Illuminate\Support\Str::slug($attrs['game_title']).'-'.\Illuminate\Support\Str::lower(\Illuminate\Support\Str::random(6)),
             'game_price' => fake()->randomFloat(2, 15000, 100000),
             'game_desc' => fake()->paragraph(),
-            'cover_image_path' => function () {
-                $word = fake()->word();
-                return "image/$word.png";
-            },
+            'cover_image_path' => null, // null = tampil placeholder
             'game_file_path' => function () {
                 $word = fake()->word();
                 return "game/$word.zip";
             },
-            'release_date' => fake()->date('Y_m_d'),
+            'release_date' => fake()->dateTimeBetween('-2 years', '+3 months')->format('Y-m-d'),
             'system_requirements' => fake()->sentence(),
             'developer_name' => fake()->company(),
             'publisher_name' => fake()->company(),
-            'is_active' => fake()->boolean(),
+            'is_active' => fake()->boolean(90),
         ];
     }
 

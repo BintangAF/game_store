@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
 
 #[Table(key: 'category_id')]
-#[Fillable(['category_name'])]
+#[Fillable(['category_name', 'slug'])]
 #[Guarded(['category_id'])]
 class Category extends Model
 {
