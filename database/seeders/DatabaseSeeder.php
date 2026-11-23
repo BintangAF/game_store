@@ -29,8 +29,6 @@ class DatabaseSeeder extends Seeder
             TagSeeder::class,
         ]);
 
-        User::factory(4)->create();
-
         User::factory()->create([
             'username' => 'admin',
             'email' => 'admin@mail.com',
@@ -38,12 +36,16 @@ class DatabaseSeeder extends Seeder
             'role_id' => 1,
         ]);
 
+        User::factory(10)->create([
+            'password' => 123,
+        ]);
+
         Game::factory(10)->create();
-        GameImage::factory(15)->create();
+        GameImage::factory(20)->create();
         Wishlist::factory(5)->create();
         Cart::factory(5)->create();
-        Order::factory(3)->create();
-        OrderItem::factory(5)->create();
-        Review::factory(8)->create();
+        Order::factory(10)->create();
+        OrderItem::factory(10)->create();
+        Review::factory(5)->create();
     }
 }

@@ -4,8 +4,10 @@ namespace Database\Factories;
 
 use App\Models\Category;
 use App\Models\Game;
+use App\Models\OperatingSystem;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends Factory<Game>
@@ -19,8 +21,11 @@ class GameFactory extends Factory
      */
     public function definition(): array
     {
+        $title = fake()->sentence(4);
+
         return [
-            'game_title' => fake()->sentence(),
+            'game_title' => $title,
+            'slug' => Str::slug($title) . '-' . fake()->unique()->numberBetween(100, 999),
             'game_price' => fake()->randomFloat(2, 15000, 100000),
             'game_desc' => fake()->paragraph(),
             'cover_image_path' => function () {
@@ -31,7 +36,7 @@ class GameFactory extends Factory
                 $word = fake()->word();
                 return "game/$word.zip";
             },
-            'release_date' => fake()->date('Y_m_d'),
+            'release_date' => fake()->date(),
             'system_requirements' => fake()->sentence(),
             'developer_name' => fake()->company(),
             'publisher_name' => fake()->company(),
@@ -46,12 +51,28 @@ class GameFactory extends Factory
         return $this->afterCreating(function (Game $game) {
             // Mengambil 1 sampai 3 Tag secara acak dan memasukkannya ke tabel game_tag
             $game->tags()->attach(
-                Tag::inRandomOrder()->limit(rand(1, 3))->pluck('tag_id')
+                Tag::inRandomOrder()->limit(rand(1, 3))->pluck('tag_id'),
+                [
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]
             );
 
             // Mengambil 1 sampai 2 Category secara acak dan memasukkannya ke tabel game_category
             $game->categories()->attach(
-                Category::inRandomOrder()->limit(rand(1, 2))->pluck('category_id')
+                Category::inRandomOrder()->limit(rand(1, 2))->pluck('category_id'),
+                [
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]
+            );
+
+            $game->operatingSystems()->attach(
+                OperatingSystem::inRandomOrder()->limit(rand(1, 3))->pluck('os_id'),
+                [
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]
             );
         });
     }
