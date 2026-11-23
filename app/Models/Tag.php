@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
 
 #[Table(key: 'tag_id')]
-#[Fillable(['tag_name'])]
+#[Fillable(['tag_name', 'slug'])]
 #[Guarded(['tag_id'])]
 class Tag extends Model
 {

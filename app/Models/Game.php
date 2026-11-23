@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 #[Table(key: 'game_id')]
 #[Fillable([
-    'game_title', 'game_price', 'game_desc', 'cover_image_path',
+    'game_title', 'slug', 'game_price', 'game_desc', 'cover_image_path',
     'game_file_path', 'release_date', 'system_requirements', 'developer_name',
     'publisher_name', 'is_active',
 ])]
