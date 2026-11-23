@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-#[Table(key: 'category_id')]
+#[Table(key: 'cart_id')]
 #[Fillable(['user_id', 'game_id'])]
 #[Guarded(['cart_id'])]
 class Cart extends Model
