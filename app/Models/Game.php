@@ -20,6 +20,12 @@ class Game extends Model
 {
     use HasFactory;
 
+    // Hanya game yang aktif tampil di toko
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
     protected function casts()
     {
         return [
@@ -76,22 +82,28 @@ class Game extends Model
     // Relasi One to Many
     public function carts()
     {
-        return $this->hasMany(Cart::class);
+        return $this->hasMany(Cart::class, 'game_id');
     }
 
     public function wishlists()
     {
-        return $this->hasMany(Wishlist::class);
+        return $this->hasMany(Wishlist::class, 'game_id');
     }
 
     public function reviews()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class, 'game_id');
     }
 
     public function gameImages()
     {
-        return $this->hasMany(GameImage::class)->orderBy('sort_order');
+        return $this->hasMany(GameImage::class, 'game_id')->orderBy('sort_order');
+    }
+
+    // Nama yang dipakai di kontrak data frontend ($game->images)
+    public function images()
+    {
+        return $this->hasMany(GameImage::class, 'game_id')->orderBy('sort_order');
     }
 
     public function orderItems()

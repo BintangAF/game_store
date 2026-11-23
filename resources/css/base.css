@@ -1,0 +1,16 @@
+@layer base {
+    body {
+        overflow-x: hidden;
+        background-image:
+            radial-gradient(circle at 86% 8%, color-mix(in srgb, var(--color-sage) 16%, transparent) 0%, transparent 40%),
+            radial-gradient(circle at 12% 88%, color-mix(in srgb, var(--color-coral) 14%, transparent) 0%, transparent 42%),
+            linear-gradient(color-mix(in srgb, var(--color-sage) 3.5%, transparent) 1px, transparent 1px),
+            linear-gradient(90deg, color-mix(in srgb, var(--color-sage) 3.5%, transparent) 1px, transparent 1px);
+        background-size: 100% 100%, 100% 100%, 56px 56px, 56px 56px;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-accent-2);
+        outline-offset: 2px;
+    }
+}

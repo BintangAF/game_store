@@ -1,9 +1,13 @@
+/*
+  Pintu masuk CSS. Tulis gaya di file terpisah lalu import di sini.
+  Urutan: tailwind, tema, dasar, komponen.
+*/
 @import 'tailwindcss';
 
+@import './theme.css';
+@import './base.css';
+@import './components/placeholder.css';
+
+/* Sumber bawaan Laravel (jangan dihapus) */
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
-
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
-}

@@ -28,19 +28,16 @@ class GameFactory extends Factory
             'slug' => Str::slug($title) . '-' . fake()->unique()->numberBetween(100, 999),
             'game_price' => fake()->randomFloat(2, 15000, 100000),
             'game_desc' => fake()->paragraph(),
-            'cover_image_path' => function () {
-                $word = fake()->word();
-                return "image/$word.png";
-            },
+            'cover_image_path' => null, // null = tampil placeholder
             'game_file_path' => function () {
                 $word = fake()->word();
                 return "game/$word.zip";
             },
-            'release_date' => fake()->date(),
+            'release_date' => fake()->dateTimeBetween('-2 years', '+3 months')->format('Y-m-d'),
             'system_requirements' => fake()->sentence(),
             'developer_name' => fake()->company(),
             'publisher_name' => fake()->company(),
-            'is_active' => fake()->boolean(),
+            'is_active' => fake()->boolean(90),
         ];
     }
 
