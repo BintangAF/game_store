@@ -1,0 +1,44 @@
+/*
+  Semua warna, bentuk, dan bayangan ada di sini. Ganti di sini, seluruh situs ikut berubah.
+  Token --color-*, --radius-*, --shadow-* otomatis menjadi kelas Tailwind.
+
+  Gaya: kaca transparan di atas latar ungu gelap, aksen teal dan merah, sudut membulat, bayangan lembut.
+  Palet dasar:
+    ink   #1e173a  latar halaman
+    cream #fdf7f2  teks
+    sage  #96c1bb  aksen sekunder (teal)
+    coral #e84b4e  aksen utama (merah)
+*/
+@theme {
+    --color-ink: #1e173a;
+    --color-cream: #fdf7f2;
+    --color-sage: #96c1bb;
+    --color-coral: #e84b4e;
+
+    --font-sans: 'Inter', 'Plus Jakarta Sans', 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 22px;
+
+    --shadow-elev: 0 18px 44px rgb(8 4 22 / 0.52);
+    --shadow-glow-red: 0 6px 20px rgb(232 75 78 / 0.34);
+    --shadow-glow-teal: 0 6px 18px rgb(150 193 187 / 0.22);
+}
+
+/* Nama semantik: yang dipakai di Blade. */
+@theme inline {
+    --color-base: var(--color-ink);
+    --color-deep: #130d27;
+    --color-fg: var(--color-cream);
+    --color-accent: var(--color-coral);
+    --color-accent-soft: #ff9c9e;
+    --color-accent-2: var(--color-sage);
+    --color-panel: rgb(38 29 71 / 0.72);
+    --color-panel-2: rgb(49 39 92 / 0.85);
+    --color-muted: rgb(253 247 242 / 0.76);
+    --color-soft: rgb(253 247 242 / 0.52);
+    --color-line: rgb(253 247 242 / 0.11);
+    --color-line-teal: rgb(150 193 187 / 0.42);
+    --color-star: #f6c453;
+}

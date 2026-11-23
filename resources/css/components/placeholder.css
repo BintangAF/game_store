@@ -1,0 +1,8 @@
+/*
+  Placeholder gambar. Warnanya netral dan datar, tidak memakai palet (--color-*),
+  jadi tidak ikut berubah saat tema diganti.
+  Pakai: <div class="ph" style="--ph-h: 210"> (hue 0-360, tiap game beda).
+*/
+.ph {
+    background: hsl(var(--ph-h, 220) 16% 28%);
+}
