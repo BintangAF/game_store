@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Guarded;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 
 #[Table(key: 'game_id')]
 #[Fillable([
@@ -26,6 +27,50 @@ class Game extends Model
             'release_date' => 'date',
             'is_active' => 'boolean',
         ];
+    }
+
+    /**
+     * The "booted" method of the model.
+     * Dijalankan otomatis saat Model di-load
+     */
+    protected static function booted(): void
+    {
+        // Event saat data BARU akan dibuat (Creating)
+        static::creating(function (Game $game) {
+            if (empty($game->slug)) {
+                $game->slug = static::createUniqueSlug($game->game_title);
+            }
+        });
+
+        // Event saat data akan di-UPDATE
+        static::updating(function (Game $game) {
+            // Hanya generate ulang slug jika judul game berubah
+            if ($game->isDirty('game_title')) {
+                $game->slug = static::createUniqueSlug($game->game_title, $game->game_id);
+            }
+        });
+    }
+
+    /**
+     * Helper untuk membuat slug yang unik
+     */
+    private static function createUniqueSlug(string $title, ?int $ignoreId = null): string
+    {
+        $slug = Str::slug($title);
+        $originalSlug = $slug;
+        $count = 1;
+
+        // Cek apakah slug sudah ada di database
+        while (
+            static::where('slug', $slug)
+            ->when($ignoreId, fn($q) => $q->where('game_id', '!=', $ignoreId))
+            ->exists()
+        ) {
+            $slug = "{$originalSlug}-{$count}";
+            $count++;
+        }
+
+        return $slug;
     }
 
     // Relasi One to Many
