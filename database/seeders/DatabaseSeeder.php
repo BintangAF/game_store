@@ -36,16 +36,58 @@ class DatabaseSeeder extends Seeder
             'role_id' => 1,
         ]);
 
+        // Akun contoh untuk mencoba toko: demo@mail.com / password
+        $demo = User::factory()->create([
+            'username' => 'demo',
+            'email' => 'demo@mail.com',
+            'password' => 123,
+            'role_id' => 2,
+        ]);
+
         User::factory(10)->create([
             'password' => 123,
         ]);
 
-        Game::factory(10)->create();
+
+        Game::factory(24)->create();
         GameImage::factory(20)->create();
-        Wishlist::factory(5)->create();
-        Cart::factory(5)->create();
-        Order::factory(10)->create();
-        OrderItem::factory(10)->create();
-        Review::factory(5)->create();
+
+        // Demo punya 3 game dari order "paid" (muncul di Koleksi dan boleh menulis ulasan)
+        $owned = Game::inRandomOrder()->take(3)->get();
+        $order = Order::create([
+            'user_id' => $demo->user_id,
+            'total_amount' => $owned->sum('game_price'),
+            'status' => 'paid',
+            'payment_method' => 'qris',
+        ]);
+        foreach ($owned as $game) {
+            OrderItem::create([
+                'order_id' => $order->order_id,
+                'game_id' => $game->game_id,
+                'price_at_purchase' => $game->game_price,
+            ]);
+        }
+
+        // Keranjang dan wishlist demo (game yang belum dimiliki)
+        $others = Game::whereNotIn('game_id', $owned->pluck('game_id'))->inRandomOrder()->take(4)->get();
+        foreach ($others->take(2) as $game) {
+            Cart::create(['user_id' => $demo->user_id, 'game_id' => $game->game_id]);
+        }
+        foreach ($others->slice(2) as $game) {
+            Wishlist::create(['user_id' => $demo->user_id, 'game_id' => $game->game_id]);
+        }
+
+        // Ulasan dari user lain (unik per user + game)
+        $users = User::where('user_id', '!=', $demo->user_id)->get();
+        foreach (Game::inRandomOrder()->take(15)->get() as $game) {
+            foreach ($users->random(rand(1, min(4, $users->count()))) as $user) {
+                Review::create([
+                    'user_id' => $user->user_id,
+                    'game_id' => $game->game_id,
+                    'star' => rand(2, 5),
+                    'body' => fake()->realText(120),
+                ]);
+            }
+        }
     }
 }
