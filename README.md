@@ -24,7 +24,7 @@ DB_CONNECTION=sqlite
 Lalu jalankan
 
 ```bash
-php artisan key:generate`
+php artisan key:generate
 php artisan migrate
 ```
 
