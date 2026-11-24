@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources\Tags;
 
-use App\Filament\Resources\Tags\Pages\CreateTag;
-use App\Filament\Resources\Tags\Pages\EditTag;
-use App\Filament\Resources\Tags\Pages\ListTags;
-use App\Filament\Resources\Tags\Schemas\TagForm;
-use App\Filament\Resources\Tags\Tables\TagsTable;
+use App\Filament\Resources\Tags\Pages\ManageTags;
 use App\Models\Tag;
 use BackedEnum;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class TagResource extends Resource
@@ -24,27 +26,64 @@ class TagResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        return TagForm::configure($schema);
+        return $schema
+            ->components([
+                TextInput::make('tag_name')
+                    ->label('Name')
+                    ->required()
+                    ->unique()
+                    ->maxLength(30),
+                TextInput::make('slug')
+                    ->required()
+                    ->unique()
+                    ->maxLength(50),
+            ]);
     }
 
     public static function table(Table $table): Table
     {
-        return TagsTable::configure($table);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
+        return $table
+            ->recordTitleAttribute('tag_name')
+            ->columns([
+                TextColumn::make('tag_name')
+                    ->label('Name')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('slug'),
+                TextColumn::make('games_count')
+                    ->label('Games')
+                    ->counts('games')
+                    ->sortable(),
+                TextColumn::make('created_at')
+                    ->since()
+                    ->isoDateTimeTooltip()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->since()
+                    ->isoDateTimeTooltip()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->defaultSort('updated_at', direction: 'desc')
+            ->filters([
+                //
+            ])
+            ->recordActions([
+                EditAction::make(),
+                DeleteAction::make(),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
+            ]);
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => ListTags::route('/'),
-            'create' => CreateTag::route('/create'),
-            'edit' => EditTag::route('/{record}/edit'),
+            'index' => ManageTags::route('/'),
         ];
     }
 }
