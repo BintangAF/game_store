@@ -21,7 +21,8 @@ class GamesTable
                 TextColumn::make('game_title')
                     ->label('Title')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->wrap(),
                 TextColumn::make('game_price')
                     ->label('Price')
                     ->money('IDR', locale: 'id')

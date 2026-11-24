@@ -19,8 +19,9 @@ class GameForm
                 TextInput::make('game_title')
                     ->label('Title')
                     ->required()
-                    ->maxLength(100),
-                TextInput::make('slug')->maxLength(150),
+                    ->maxLength(100)
+                    ->trim(),
+                TextInput::make('slug')->maxLength(150)->trim(),
                 TextInput::make('game_price')
                     ->label('Price')
                     ->required()
@@ -40,11 +41,13 @@ class GameForm
                 TextInput::make('developer_name')
                     ->label('Developer')
                     ->required()
-                    ->maxLength(50),
+                    ->maxLength(50)
+                    ->trim(),
                 TextInput::make('publisher_name')
                     ->label('Publisher')
                     ->required()
-                    ->maxLength(50),
+                    ->maxLength(50)
+                    ->trim(),
                 Toggle::make('is_active')
                     ->label('Active')
                     ->onColor('success')

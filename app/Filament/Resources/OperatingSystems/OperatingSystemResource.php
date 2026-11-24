@@ -37,7 +37,8 @@ class OperatingSystemResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('os_name')
-                    ->searchable(),
+                    ->searchable()
+                    ->trim(),
                 TextColumn::make('games_count')
                     ->label('Games')
                     ->counts('games')

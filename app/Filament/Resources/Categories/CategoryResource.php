@@ -32,11 +32,13 @@ class CategoryResource extends Resource
                     ->label('Name')
                     ->required()
                     ->unique()
-                    ->maxLength(30),
+                    ->maxLength(30)
+                    ->trim(),
                 TextInput::make('slug')
                     ->required()
                     ->unique()
-                    ->maxLength(50),
+                    ->maxLength(50)
+                    ->trim(),
             ]);
     }
 
