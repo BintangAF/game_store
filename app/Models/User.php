@@ -3,7 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasName;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Attributes\Table;
@@ -14,7 +16,7 @@ use Illuminate\Notifications\Notifiable;
 #[Table(key: 'user_id')]
 #[Fillable(['username', 'email', 'password', 'role_id'])]
 #[Hidden(['password', 'remember_token'])]
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser, HasName
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory;
@@ -31,6 +33,18 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // mengatur user yang bisa mengakses panel admin
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->role?->role_name === 'admin';
+    }
+
+    // mengatur nama yang ditampilkan di panel admin
+    public function getFilamentName(): string
+    {
+        return $this->username;
     }
 
     // Relasi One to Many
