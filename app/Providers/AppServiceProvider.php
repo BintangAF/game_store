@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
+use App\Support\HeaderNotices;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
                 $attrs->set('shared_view_data', [
                     'cartCount' => auth()->check() ? auth()->user()->cart()->count() : 0,
                     'navCategories' => Category::orderBy('category_name')->get(),
+                    'headerNotices' => HeaderNotices::get(),
                 ]);
             }
 

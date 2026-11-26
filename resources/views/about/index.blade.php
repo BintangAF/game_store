@@ -3,8 +3,8 @@
 @section('title', 'Tentang')
 @section('content')
     <x-ui.panel>
-        <h1 class="mb-2 text-2xl font-black">Tentang LINTAR.STORE</h1>
-        <p class="text-sm leading-relaxed">LINTAR.STORE adalah toko game digital buatan kelompok kami untuk proyek akhir mata kuliah Pemrograman Berbasis Platform. Isi teks ini masih placeholder.</p>
+        <h1 class="mb-2 text-2xl font-black">Tentang VIRRATE</h1>
+        <p class="text-sm leading-relaxed">VIRRATE adalah toko game digital buatan kelompok kami untuk proyek akhir mata kuliah Pemrograman Berbasis Platform. Isi teks ini masih placeholder.</p>
     </x-ui.panel>
 
     <x-ui.section-title title="Tim pengembang" />

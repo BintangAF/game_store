@@ -15,6 +15,13 @@
         <x-nav.link :href="route('profile')" :active="request()->routeIs('profile*')">Profil</x-nav.link>
     </nav>
 
+    {{-- Pemberitahuan bergeser: mengisi ruang kosong di kanan menu (desktop). Hilang sendiri bila kosong. --}}
+    @if (! empty($headerNotices))
+        <div class="hidden min-w-0 flex-1 justify-end md:flex">
+            <x-ui.ticker :items="$headerNotices" class="w-full max-w-md" />
+        </div>
+    @endif
+
     <div class="ml-auto flex items-center md:hidden">
         @include('partials.header.cart-link')
     </div>

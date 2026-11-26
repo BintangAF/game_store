@@ -16,6 +16,12 @@ require_once __DIR__.'/preview-data.php';
 
 View::share([
     'cartCount' => 2,
+    'headerNotices' => [
+        ['label' => 'Populer', 'tone' => 'sage', 'text' => '128 orang sudah memiliki Game 1', 'href' => '/game/1'],
+        ['label' => 'Segera', 'tone' => 'accent', 'text' => 'Game 7 rilis dalam 5 hari (30/11/2026)', 'href' => '/game/7'],
+        ['label' => 'Populer', 'tone' => 'sage', 'text' => '86 orang sudah memiliki Game 3', 'href' => '/game/3'],
+        ['label' => 'Segera', 'tone' => 'accent', 'text' => 'Game 8 rilis besok (26/11/2026)', 'href' => '/game/8'],
+    ],
     'navCategories' => pv_categories(),
 ]);
 

@@ -57,6 +57,7 @@ Contoh form di dalam panel:
 | `<x-ui.tile>` | `category` | Kotak kategori. |
 | `<x-ui.horizontal-row>` | `cols` | Baris kartu: geser samping di HP, grid di desktop. Contoh `cols="lg:grid-cols-4"`. |
 | `<x-ui.scroller>` | - | Baris yang bisa digeser: 5 item di desktop, tombol kiri/kanan, titik halaman, swipe di HP. Dipakai untuk kotak kategori. |
+| `<x-ui.ticker>` | `items` | Pemberitahuan yang bergeser di header, satu per satu dan berputar. Data dari `$headerNotices`. |
 | `<x-ui.carousel>` | `autoplay` (ms, 0 untuk mematikan) | Carousel loop tanpa ujung dengan geser otomatis, slide samping terlihat sebagai preview (klik untuk pindah), titik, tombol, dan swipe. Isi = satu elemen per slide. |
 | `<x-ui.empty-state>` | `title`, `message`, `href`, `action` | Tampilan kosong. |
 | `<x-ui.placeholder>` | `hue`, `label` | Gambar pengganti netral. |

@@ -2,7 +2,7 @@
     <div class="mx-auto grid max-w-[1240px] gap-8 px-5 py-8 sm:grid-cols-2 lg:grid-cols-4">
         <div>
             <x-ui.brand />
-            <p class="mt-3">&copy; {{ date('Y') }} LINTAR.STORE. Proyek akhir mata kuliah PBP.</p>
+            <p class="mt-3">&copy; {{ date('Y') }} VIRRATE. Proyek akhir mata kuliah PBP.</p>
         </div>
         <div>
             <h3 class="mb-2 text-xs font-extrabold uppercase tracking-[2px] text-accent-2">Toko</h3>

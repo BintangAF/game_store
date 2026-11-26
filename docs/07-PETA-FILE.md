@@ -84,6 +84,7 @@ Tiap folder berisi file `.gitkeep` kosong supaya folder ikut tersimpan di Git.
 | `core/boot.js` | Pemasang modul. Mencari elemen ber-atribut `data-js="nama"` lalu menjalankan modul bernama itu. |
 | `modules/carousel.js` | Banner Home: loop tanpa ujung, geser otomatis, preview slide samping, titik, swipe. |
 | `modules/scroller.js` | Baris yang bisa digeser (kotak kategori): tombol, titik halaman, swipe. |
+| `modules/ticker.js` | Pemberitahuan di header: item naik bergantian, berputar tanpa ujung, berhenti saat kursor di atasnya. |
 | `modules/tabs.js` | Tab daftar game di Home. |
 | `modules/gallery.js` | Ganti gambar utama saat thumbnail diklik di halaman detail. |
 | `modules/game-tip.js` | Tooltip detail game saat kursor di atas kartu. |
@@ -125,6 +126,7 @@ Tiap folder berisi file `.gitkeep` kosong supaya folder ikut tersimpan di Git.
 | `ui/placeholder` | Gambar pengganti netral. |
 | `ui/horizontal-row` | Baris kartu: geser samping di HP, grid di desktop. |
 | `ui/scroller` | Baris yang bisa digeser dengan tombol dan titik halaman. |
+| `ui/ticker` | Pemberitahuan bergeser di header (pembeli terbanyak, game segera rilis). |
 | `ui/carousel` | Pembungkus carousel Home. |
 | `ui/empty-state` | Tampilan kosong (keranjang kosong dan sejenisnya). |
 | `ui/todo` | Penanda bagian yang belum diisi (tampil hanya di mode lokal). |

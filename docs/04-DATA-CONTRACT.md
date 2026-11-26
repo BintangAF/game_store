@@ -33,6 +33,7 @@ Objek lain: `$review` (star, body, user->username, created_at), `$order` (order_
 | `auth()->user()` | pengguna login atau null |
 | `$cartCount` | jumlah item di keranjang (angka) |
 | `$navCategories` | daftar kategori untuk dropdown Kategori |
+| `$headerNotices` | pemberitahuan yang bergeser di header: tiap item `label`, `tone` (accent, sage, muted), `text`, `href`. Kosong = tidak tampil | `App\Support\HeaderNotices::get()` (pembeli terbanyak dari pesanan `paid`, dan game dengan `release_date` di depan) |
 
 ## 3. Variabel per halaman
 

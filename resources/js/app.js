@@ -6,11 +6,13 @@ import tabs from './modules/tabs';
 import gallery from './modules/gallery';
 import gameTip from './modules/game-tip';
 import scroller from './modules/scroller';
+import ticker from './modules/ticker';
 
 register('carousel', carousel);
 register('tabs', tabs);
 register('gallery', gallery);
 register('game-tip', gameTip);
 register('scroller', scroller);
+register('ticker', ticker);
 
 document.addEventListener('DOMContentLoaded', () => bootAll());
