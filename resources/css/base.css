@@ -2,10 +2,6 @@
     body {
         overflow-x: hidden;
         background-color: var(--color-background);
-        background-image:
-            linear-gradient(color-mix(in srgb, var(--color-sage) 3.5%, transparent) 1px, transparent 1px),
-            linear-gradient(90deg, color-mix(in srgb, var(--color-sage) 3.5%, transparent) 1px, transparent 1px);
-        background-size: 56px 56px;
     }
 
     :focus-visible {

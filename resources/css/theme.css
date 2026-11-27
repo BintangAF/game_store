@@ -10,15 +10,15 @@
     coral #e84b4e  aksen utama (merah)
 */
 @theme {
-    --color-ink: #1e173a;
+    --color-semidark: #1A1A1D;
     --color-cream: #fdf7f2;
-    --color-sage: #96c1bb;
-    --color-coral: #e84b4e;
+    --color-sage: #8E1EA2;
+    --color-coral: #FF5FCF;
 
     --font-sans: 'Inter', 'Plus Jakarta Sans', 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
 
     --radius-sm: 10px;
-    --radius-md: 16px;
+    --radius-md: 16 px;
     --radius-lg: 22px;
 
 
@@ -26,8 +26,8 @@
 
 /* Nama semantik: yang dipakai di Blade. */
 @theme inline {
-    --color-base: var(--color-ink);
-    --color-deep: #130d27;
+    --color-base: var(--color-semidark);
+    --color-deep: #222831;
     --color-fg: var(--color-cream);
     --color-accent: var(--color-coral);
     --color-accent-soft: #ff9c9e;
@@ -39,4 +39,6 @@
     --color-line: rgb(253 247 242 / 0.11);
     --color-line-teal: rgb(150 193 187 / 0.42);
     --color-star: #f6c453;
+    --color-header-top: #000000;
+    --color-header-nav: #222831;
 }

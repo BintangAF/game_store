@@ -7,14 +7,14 @@
         </a>
         <div class="pointer-events-none absolute inset-0 bg-linear-to-t from-deep/70 to-transparent to-45%"></div>
         @if (($game->reviews_count ?? 0) > 0)
-            <span class="absolute left-2.5 top-2.5 rounded-full border border-line-teal bg-deep/80 px-2.5 py-0.5 text-xs font-extrabold text-accent-2 backdrop-blur">&#9733; {{ number_format($game->reviews_avg_star, 1, ',', '.') }}</span>
+            <span class="absolute left-2.5 top-2.5 rounded-full border border-line-teal bg-deep/80 px-2.5 py-0.5 text-xs font-extrabold text-star backdrop-blur">&#9733; {{ number_format($game->reviews_avg_star, 1, ',', '.') }}</span>
         @endif
         @if ($wish)
             <form method="POST" action="{{ route('wishlist.store') }}" class="absolute right-2.5 top-2.5">
                 @csrf
                 <input type="hidden" name="game_id" value="{{ $game->game_id }}">
                 <button type="submit" aria-label="Tambah ke wishlist"
-                        class="grid size-8 place-items-center rounded-full border border-line bg-deep/80 text-sm backdrop-blur transition hover:scale-110 hover:border-accent hover:bg-accent">&#9825;</button>
+                        class="grid size-8 place-items-center rounded-full border border-line bg-deep/40 text-sm backdrop-blur transition hover:scale-110 hover:border-accent hover:bg-accent">&#9825;</button>
             </form>
         @endif
     </div>

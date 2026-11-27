@@ -1,4 +1,4 @@
-<footer class="mt-8 border-t border-line bg-deep/90 text-sm text-soft">
+<footer class="mt-8 border-t border-line bg-deep text-sm text-soft">
     <div class="mx-auto grid max-w-[1240px] gap-8 px-5 py-8 sm:grid-cols-2 lg:grid-cols-4">
         <div>
             <x-ui.brand />

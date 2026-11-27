@@ -15,7 +15,7 @@
     };
 @endphp
 <template data-game-tip-content>
-    <h4 class="text-base font-extrabold">{{ $game->game_title }}</h4>
+    <h4 class="text-fg font-extrabold">{{ $game->game_title }}</h4>
     <p class="text-xs text-soft">Dirilis: {{ \Illuminate\Support\Carbon::parse($game->release_date)->format('d/m/Y') }}</p>
     <p class="mt-2 line-clamp-5 text-sm text-muted">{{ $game->game_desc ?? '' }}</p>
     <div class="mt-3 rounded-sm border border-line bg-fg/5 p-2.5 text-sm">

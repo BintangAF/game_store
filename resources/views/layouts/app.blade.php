@@ -9,9 +9,21 @@
     <input id="drawer-toggle" type="checkbox" class="peer sr-only">
     @include('partials.header.mobile-drawer')
 
-    <header class="sticky top-0 z-30 border-b border-line bg-deep/85 backdrop-blur-lg">
-        @include('partials.header.top')
-        @include('partials.header.store-nav')
+    <header
+        class="sticky top-0 z-30"
+        data-js="header-scroll"
+        >
+        {{-- Header atas: logo dan pengumuman --}}
+        <div class="border-b border-line bg-header-top/50 backdrop-blur-sm">
+        <div data-header-top>
+            @include('partials.header.top')
+        </div>
+
+        {{-- Navigasi toko --}}
+         <div class="border-b border-line bg-header-nav/40 backdrop-blur-sm">
+        <div data-header-store>
+            @include('partials.header.store-nav')
+        </div>
     </header>
 
     <main class="mx-auto w-full max-w-[1240px] flex-1 px-5 pb-16 pt-7">
