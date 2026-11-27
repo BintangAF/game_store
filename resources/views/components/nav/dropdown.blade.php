@@ -3,7 +3,7 @@
 <div class="group relative flex items-center">
     <a href="{{ $href }}" @class([
         'inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-semibold transition-colors',
-        'bg-accent-2 font-bold text-deep' => $active,
+        'bg-accent-2 font-bold text-white' => $active,
         'text-muted hover:bg-fg/8 hover:text-fg' => ! $active,
     ])>{{ $label }} <span aria-hidden="true" class="text-[10px]">&#9662;</span></a>
 

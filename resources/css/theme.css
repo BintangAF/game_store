@@ -32,8 +32,8 @@
     --color-accent: var(--color-coral);
     --color-accent-soft: #ff9c9e;
     --color-accent-2: var(--color-sage);
-    --color-panel: rgb(38 29 71 / 0.72);
-    --color-panel-2: rgb(49 39 92 / 0.85);
+    --color-panel: rgb(34 40 49 / 0.85);
+    --color-panel-2: rgb(46 54 66 / 0.95);
     --color-muted: rgb(253 247 242 / 0.76);
     --color-soft: rgb(253 247 242 / 0.52);
     --color-line: rgb(253 247 242 / 0.11);

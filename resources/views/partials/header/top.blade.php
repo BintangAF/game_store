@@ -1,10 +1,10 @@
 {{-- Baris atas: tombol menu (mobile), logo, menu utama. Rata kiri. --}}
-<div class="flex min-h-16 items-center gap-6 px-5 py-2">
+<div class="mx-auto flex max-w-[1240px] items-center gap-4 px-5 py-2">
     <label for="drawer-toggle" class="flex cursor-pointer items-center text-2xl md:hidden" aria-label="Buka menu">&#9776;</label>
 
-    <x-ui.brand />
+    <x-ui.brand class="[&>img]:h-20" />
 
-    <nav class="hidden items-center gap-1 md:flex">
+    <nav class="hidden items-center gap-3 md:flex">
         <x-nav.dropdown label="Home" :href="route('home')" :active="request()->routeIs('home')">
             <a href="{{ route('home') }}">Beranda</a>
             <a href="{{ route('search', ['sort' => 'newest']) }}">Rilisan terbaru</a>
