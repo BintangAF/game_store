@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
@@ -24,13 +26,41 @@ class AuthController extends Controller
         // Kolom "login" boleh email atau username
         $field = filter_var($data['login'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-        if (! Auth::attempt([$field => $data['login'], 'password' => $data['password']], $request->boolean('remember'))) {
-            return back()->withErrors(['login' => 'Email/username atau password salah.'])->onlyInput('login');
+        // cek apakah user dengan username atau email tersebut ada
+        // dan jika ada, ambil password nya
+        if (
+            $ori_password = DB::table('users')
+            ->where($field, $data['login'])
+            ->value('password')
+        ) {
+            // cek kecocokan hash password inputan dan password dari database
+            if (Hash::check($data['password'], $ori_password)) {
+                // jika cocok ambil role_id nya
+                $role_id = DB::table('users')->where($field, $data['login'])->value('role_id');
+
+                if ($role_id == 1) {
+                    return back()->withErrors([
+                        'login' => 'Email/username atau password salah',
+                    ])->onlyInput('login');
+                }
+            }
         }
 
-        $request->session()->regenerate();
+        if (
+            Auth::attempt(
+                [
+                    $field => $data['login'],
+                    'password' => $data['password'],
+                ],
+                $request->boolean('remember')
+            )
+        ) {
+            $request->session()->regenerate();
+            return redirect()->intended(route('home'));
+        }
 
-        return redirect()->intended(route('home'));
+        // jika Auth::attempt gagal (email / password salah)
+        return back()->withErrors(['login' => 'Email/username atau password salah'])->onlyInput('login');
     }
 
     public function showRegister()
